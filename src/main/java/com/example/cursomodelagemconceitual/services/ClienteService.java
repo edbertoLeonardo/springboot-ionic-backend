@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.example.cursomodelagemconceitual.domain.Cliente;
-import com.example.cursomodelagemconceitual.domain.Cliente;
 import com.example.cursomodelagemconceitual.dto.ClienteDTO;
 import com.example.cursomodelagemconceitual.repositories.ClienteRepository;
 import com.example.cursomodelagemconceitual.services.exception.DataIntegretyException;
