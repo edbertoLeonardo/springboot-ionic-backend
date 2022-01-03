@@ -15,17 +15,17 @@ import java.net.URI;
 public class CategoriaResource {
 	
 	@Autowired
-	private CategoriaService categoriaSservice;
+	private CategoriaService categoriaService;
 	
 	@RequestMapping(value= "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
-		Categoria categoria = categoriaSservice.find(id);
+		Categoria categoria = categoriaService.find(id);
 		return ResponseEntity.ok().body(categoria);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Categoria categoria){
-		categoria = categoriaSservice.insert(categoria);
+		categoria = categoriaService.insert(categoria);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -34,7 +34,13 @@ public class CategoriaResource {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id){
 		categoria.setId(id);
-		categoria = categoriaSservice.update(categoria);
+		categoria = categoriaService.update(categoria);
+		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(value= "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		categoriaService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }
